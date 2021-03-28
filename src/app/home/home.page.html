@@ -1,20 +1,84 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label stacked for="nome">Nome</label>
+        <ion-input type="text" name="nome" #nome="ngModel" [(ngModel)]="cliente.nome" required></ion-input>
+    </div>
+    <!-- VALIDAÇÕES  Nome -->
+    <ion-item *ngIf="nome.invalid && (nome.dirty || nome.touched)" color="danger">
+        <div *ngIf="nome?.errors.required">
+            Nome
+        </div>
+    </ion-item>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <div class="form-group">
+        <label stacked for="tipo">Tipo de Cadastro</label>
+        <select class="form-control" name="tipo" #tipo="ngModel" [(ngModel)]="cliente.tipo" required>
+          <option value="">Selecione</option>    
+      <option value="1">Pessoa física</option>
+      <option value="2">Pessoa jurídica</option>
+    </select>
+    </div>
+    <!-- VALIDAÇÕES Tipo de Cadastro -->
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+    <ion-item *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)" color="danger">
+        <div *ngIf="tipo?.errors.required">
+            Tipo de Cadastro é Obrigatório.
+        </div>
+
+
+    </ion-item>
+
+    <div class="form-group">
+        <label stacked for="genero">Genero</label>
+        <select class="form-control" name="genero" #genero="ngModel" [(ngModel)]="cliente.genero" required>
+          <option value="">Selecione</option>    
+      <option value="1">Masculino</option>
+      <option value="2">Feminino</option>
+    </select>
+    </div>
+    <!--VALIDAÇÕES GENERO  -->
+    <ion-item *ngIf="genero.invalid && (genero.dirty || genero.touched)" color="danger">
+        <div *ngIf="genero?.errors.required">
+            Gênero é Obrigatório
+        </div>
+    </ion-item>
+
+
+
+    <div class="form-group">
+        <label for="dataNascimento">Data de Nascimento</label>
+        <input type="date" class="form-control" name="dataNascimento" #dataNascimento="ngModel" [(ngModel)]="cliente.dataNascimento" required>
+    </div>
+
+    <!-- VALIDAÇÕES DATA DE NASCIMENTO -->
+    <ion-item *ngIf="dataNascimento.invalid && (dataNascimento.dirty || dataNascimento.touched)" color="warning">
+        <div *ngIf="dataNascimento?.errors.required">
+            Data de Nascimento é Obragatório.
+        </div>
+    </ion-item>
+
+
+    <div class="form-group">
+        <label for="observacao">Observação</label>
+        <input type="text" class="form-control" name="observacao" #observacao="ngModel" [(ngModel)]="cliente.observacao" required>
+    </div>
+
+
+    <div class="form-group">
+        <label for="inativo">Inativo</label>
+
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="inativo" #inativo="ngModel" [(ngModel)]="cliente.inativo">
+        <label class="form-check-label" for="inativo">Inativo</label>
+    </div>
+
+
+    <ion-item>
+        <ion-button (click)="salvar()">Salvar</ion-button>
+    </ion-item>
+
+
+
+</form>
