@@ -1,0 +1,7 @@
+{
+  "name": "reactiveForm",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
